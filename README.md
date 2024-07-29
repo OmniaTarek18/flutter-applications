@@ -47,10 +47,14 @@ In Flutter, widgets are the fundamental building blocks of the user interface. E
       - StatelessWidget: A widget that does not require mutable state. All the information necessary to build the widget is provided when it is created.
       - StatefulWidget: A widget that requires mutable state. The state is maintained across rebuilds of the widget.
 
-
-- main.dart
+### Create New Project
+- write in the terminal (after specify your path)
+  ```
+  flutter create projectName
+  ``` 
+- lib/main.dart
 ```
-void main(){
+void main(){                    // Entry point of our program/app
     runApp( // root widget );   // Root widget (the main of our application where we connect all screens together)
 }    
 ```
@@ -75,3 +79,11 @@ void main() {
 }
 ```
 - The Scaffold widget simplifies the process of implementing the basic structure of an app with a consistent layout. It's an essential part of Flutter's material design components and helps to standardize the look and feel of your app. It implements the basic material design visual layout structure and is a convenient way to implement the basic material design layout and components, such as the app bar, drawer, and bottom navigation.
+
+- Good shortcut
+  ```
+  stl + tab    // write the new custom class that extends statelessWidget
+  ```
+
+- To get benefits of Hot Relaod option that flutter presents we need to make a custom widget in other words we need a function that returns something so if we change the value of its return and save changes the virtual device will get updated automatically.
+- 

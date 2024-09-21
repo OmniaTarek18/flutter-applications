@@ -154,11 +154,13 @@ class Calculator {
     num1 = "";
     num2 = "";
     operator = "";
+    isError = false;
     isSecond = false;
     isSpecialOperator = false;
   }
 
   void clearCurrentElement() {
+    isError = false;
     if (isSecond) {
       num2 = "";
     } else {
@@ -167,6 +169,7 @@ class Calculator {
   }
 
   void deleteDigit() {
+    isError = false;
     if (isSecond) {
       num2 = num2.isNotEmpty ? num2.substring(0, num2.length - 1) : "";
     } else {

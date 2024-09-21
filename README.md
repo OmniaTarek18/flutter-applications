@@ -86,4 +86,29 @@ void main() {
   ```
 
 - To get benefits of Hot Relaod option that flutter presents we need to make a custom widget in other words we need a function that returns something so if we change the value of its return and save changes the virtual device will get updated automatically.
-- 
+#### Column Widget:
+(its width = biggest width of his children)
+![image](https://github.com/user-attachments/assets/fd31ad8b-c88e-435a-a478-9043bf045e80)
+So keep that in mind if we do crossAxisAlignment.end it doesn't go to the end of the screen it just alignment all children together to the end of the biggest width 
+start
+![image](https://github.com/user-attachments/assets/774e62c4-60ec-48a5-b93a-be8f6f4475b8)
+center
+![image](https://github.com/user-attachments/assets/dafd386b-3ec0-4004-94c9-956554b24ca2)
+end
+![image](https://github.com/user-attachments/assets/a608e01e-6673-4149-a86d-1686f3e4393d)
+stretch
+![image](https://github.com/user-attachments/assets/e4809522-2ee1-4b4e-85d6-edf4687c07de)
+
+
+#### Row Widget 
+(its height = biggest height of his children) so the cross alignment will not be to the end of the screen no the end of the row
+![image](https://github.com/user-attachments/assets/5f43a6d0-ab02-49a3-9d78-98274d405914)
+
+
+Note for stretch in bot row and col they are being stretch to the all available room in the screen
+
+
+#### Container Widget
+when to use ??
+when we need to apply padding, margin, border, background color to a specific widget (just wrap it with container)
+- to wrap any widget with another press ctrl + .

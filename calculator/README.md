@@ -13,6 +13,7 @@ A simple calculator built using flutter framework. It allows users to perform ba
 ## ScreenShots
 ![image](https://github.com/user-attachments/assets/6608b3d0-7d82-4865-96a9-6859326d06b8)
 ![image](https://github.com/user-attachments/assets/c95f9e83-ec8d-4917-9863-135954acee6f)
+
 ![image](https://github.com/user-attachments/assets/8c597d06-59e0-4021-959f-2a461d6061e9)
 ![image](https://github.com/user-attachments/assets/644f5adc-ef99-4f58-8bc9-7ed5fae00b1d)
 
@@ -47,18 +48,14 @@ The app is separated into two parts
   String get displayText(){...}
 ```
 3. second part where we include all UI design and widgets and set state of all functions where the displayText changes
-```
-home:
-  Scaffold
- └── AppBar
- └── Column
-      ├── Display (Text Widget)
-      ├── GridView
-           ├── Button (TextButton)
-           ├── Button (TextButton)
-           ├── Button (TextButton)
-           └── ...
-```
+
+![image](https://github.com/user-attachments/assets/be257322-85a2-45c6-9e28-20f97728fcbb)
+
+![image](https://github.com/user-attachments/assets/1ac56599-af26-48e4-9f43-c8acb9d6cda2)
+
+![image](https://github.com/user-attachments/assets/09972225-70d2-4131-8a3f-68b47e0ca262)
+
+![image](https://github.com/user-attachments/assets/3d35cb55-80af-442e-91e0-33ea5fe69249)
 
 also I resuse the button style by store it in a variable to apply it on all buttons 
 ## Installation

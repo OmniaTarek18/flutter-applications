@@ -24,6 +24,12 @@ class _HomeState extends State<Home> {
     });
   }
 
+  void inputSpecialOperator(String op) {
+    setState(() {
+      calc.inputSpecialOperator(op);
+    });
+  }
+
   void calculate() {
     setState(() {
       calc.calculate();
@@ -48,18 +54,30 @@ class _HomeState extends State<Home> {
     });
   }
 
+  void inputDecimalPoint() {
+    setState(() {
+      calc.inputDecimalPoint();
+    });
+  }
+
+  void toggleSign() {
+    setState(() {
+      calc.toggleSign();
+    });
+  }
+
+  final ButtonStyle buttonStyle = TextButton.styleFrom(
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(30),
+    ),
+    backgroundColor: Colors.grey[900],
+    textStyle: const TextStyle(fontSize: 24), // Text size
+    foregroundColor: const Color.fromARGB(255, 211, 218, 238), // Font color
+    padding: const EdgeInsets.all(20),
+  );
+
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle buttonStyle = TextButton.styleFrom(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(30),
-      ),
-      backgroundColor: Colors.grey[900],
-      textStyle: const TextStyle(fontSize: 24), // Text size
-      foregroundColor: const Color.fromARGB(255, 211, 218, 238), // Font color
-      padding: const EdgeInsets.all(20),
-    );
-
     return Scaffold(
         appBar: AppBar(
           title: const Text(
@@ -106,13 +124,13 @@ class _HomeState extends State<Home> {
                   height: 150,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
-                    color: Colors.grey[900],
+                    color: const Color.fromARGB(255, 62, 87, 134),
                   ),
                   child: Align(
                     alignment: Alignment.topRight,
                     child: Text(calc.displayText,
                         style: const TextStyle(
-                            fontSize: 35,
+                            fontSize: 30,
                             fontWeight: FontWeight.bold,
                             color: Colors.white)),
                   ),
@@ -124,7 +142,7 @@ class _HomeState extends State<Home> {
                     mainAxisSpacing: 10,
                     children: [
                       TextButton(
-                        onPressed: () => inputOperator("%"),
+                        onPressed: calc.isError ? null : () => inputOperator("%"),
                         style: buttonStyle,
                         child: const Text("%"),
                       ),
@@ -142,30 +160,32 @@ class _HomeState extends State<Home> {
                           style: buttonStyle,
                           child: const Icon(Icons.backspace_outlined)),
                       TextButton(
-                          onPressed: () => {
-                                setState(() {
-                                  inputOperator("1/x");
-                                })
-                              },
+                          onPressed: calc.isError
+                              ? null
+                              : () => inputSpecialOperator("1 /"),
                           style: buttonStyle,
                           child: const Text(
                             "1/x",
                           )),
                       TextButton(
-                          onPressed: () => inputOperator("x²"),
+                          onPressed: calc.isError
+                              ? null
+                              : () => inputSpecialOperator("sqr"),
                           style: buttonStyle,
                           child: const Text("x²")),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: calc.isError
+                              ? null
+                              : () => inputSpecialOperator("√"),
                           style: buttonStyle,
                           child: const Text(
                             "√",
                           )),
                       TextButton(
-                          onPressed: () => inputOperator("/"),
+                          onPressed: calc.isError ? null : () => inputOperator("÷"),
                           style: buttonStyle,
                           child: const Text(
-                            "/",
+                            "÷",
                           )),
                       TextButton(
                           onPressed: () => inputDigit('7'),
@@ -186,10 +206,10 @@ class _HomeState extends State<Home> {
                             "9",
                           )),
                       TextButton(
-                          onPressed: () => inputOperator("x"),
+                          onPressed: calc.isError ? null : () => inputOperator("×"),
                           style: buttonStyle,
                           child: const Text(
-                            "x",
+                            "×",
                           )),
                       TextButton(
                           onPressed: () => inputDigit('4'),
@@ -210,7 +230,7 @@ class _HomeState extends State<Home> {
                             "6",
                           )),
                       TextButton(
-                          onPressed: () => inputOperator("-"),
+                          onPressed: calc.isError ? null : () => inputOperator("-"),
                           style: buttonStyle,
                           child: const Text(
                             "-",
@@ -222,7 +242,7 @@ class _HomeState extends State<Home> {
                             "1",
                           )),
                       TextButton(
-                          onPressed: () => inputDigit('2'),
+                          onPressed:  () => inputDigit('2'),
                           style: buttonStyle,
                           child: const Text(
                             "2",
@@ -234,13 +254,13 @@ class _HomeState extends State<Home> {
                             "3",
                           )),
                       TextButton(
-                          onPressed: () => inputOperator("+"),
+                          onPressed: calc.isError ? null : () => inputOperator("+"),
                           style: buttonStyle,
                           child: const Text(
                             "+",
                           )),
                       TextButton(
-                          onPressed: () {},
+                          onPressed: calc.isError ? null : () => toggleSign(),
                           style: buttonStyle,
                           child: const Text(
                             "+/-",
@@ -252,14 +272,24 @@ class _HomeState extends State<Home> {
                             "0",
                           )),
                       TextButton(
-                          onPressed: () => inputDigit('.'),
+                          onPressed: calc.isError ? null : () => inputDecimalPoint(),
                           style: buttonStyle,
                           child: const Text(
                             ".",
                           )),
                       TextButton(
                           onPressed: () => calculate(),
-                          style: buttonStyle,
+                          style: TextButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30),
+                            ),
+                            backgroundColor: const Color.fromARGB(255, 62, 87, 134),
+                            textStyle:
+                                const TextStyle(fontSize: 24), // Text size
+                            foregroundColor: const Color.fromARGB(
+                                255, 211, 218, 238), // Font color
+                            padding: const EdgeInsets.all(20),
+                          ),
                           child: const Text(
                             "=",
                           )),

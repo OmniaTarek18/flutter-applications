@@ -25,19 +25,22 @@ class History extends StatelessWidget {
               )),
         ),
       ),
-      body: ListView.builder(
-        itemCount: arr.length,
-        itemBuilder: (context, index) {
-          return Container(
-            padding: const EdgeInsets.all(30),
-            margin: const EdgeInsets.only(bottom: 1),
-            color: Colors.grey[800],
-            child: Text(
-              arr[index],
-              style: const TextStyle(color: Colors.white, fontSize: 20),
-            ),
-          );
-        },
+      body: Container(
+        color: const Color.fromARGB(255, 0, 0, 0),
+        child: ListView.builder(
+          itemCount: arr.length,
+          itemBuilder: (context, index) {
+            return Container(
+              padding: const EdgeInsets.all(30),
+              margin: const EdgeInsets.only(bottom: 1),
+              color: const Color.fromARGB(255, 62, 87, 134),
+              child: Text(
+                arr[index],
+                style: const TextStyle(color: Colors.white, fontSize: 20),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

@@ -48,6 +48,7 @@ The app is separated into two parts
   String get displayText(){...}
 ```
 3. second part where we include all UI design and widgets and set state of all functions where the displayText changes
+also I resuse the button style by store it in a variable to apply it on all buttons 
 
 ![image](https://github.com/user-attachments/assets/be257322-85a2-45c6-9e28-20f97728fcbb)
 
@@ -57,7 +58,6 @@ The app is separated into two parts
 
 ![image](https://github.com/user-attachments/assets/3d35cb55-80af-442e-91e0-33ea5fe69249)
 
-also I resuse the button style by store it in a variable to apply it on all buttons 
 ## Installation
 
 1. Install dependencies:

@@ -44,6 +44,9 @@ class Calculator {
   }
 
   void inputOperator(String op) {
+     if(isSecond && num2.isNotEmpty){
+      calculate();
+    }
     if (num1.isNotEmpty && !isSecond) {
       operator = op;
       isSecond = true;

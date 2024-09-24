@@ -1,6 +1,7 @@
 import 'dart:math';
+import 'package:flutter/material.dart'; // Import ChangeNotifier
 
-class Calculator {
+class Calculator extends ChangeNotifier {
   String num1 = "0";
   String num2 = "";
   String operator = "";
@@ -32,6 +33,8 @@ class Calculator {
       }
       num1 += digit;
     }
+
+    notifyListeners(); // Notify listeners about the change
   }
 
   void inputDecimalPoint() {
@@ -41,16 +44,20 @@ class Calculator {
     } else {
       if (!num1.contains('.')) num1 += ".";
     }
+
+    notifyListeners(); // Notify listeners about the change
   }
 
   void inputOperator(String op) {
-     if(isSecond && num2.isNotEmpty){
+    if (isSecond && num2.isNotEmpty) {
       calculate();
     }
     if (num1.isNotEmpty && !isSecond) {
       operator = op;
       isSecond = true;
     }
+
+    notifyListeners(); // Notify listeners about the change
   }
 
   void inputSpecialOperator(String op) {
@@ -59,6 +66,8 @@ class Calculator {
       operator = op;
       calculate();
     }
+
+    notifyListeners(); // Notify listeners about the change
   }
 
   void toggleSign() {
@@ -75,29 +84,43 @@ class Calculator {
         num1 = "-$num1";
       }
     }
+
+    notifyListeners(); // Notify listeners about the change
   }
 
   void calculate() {
+
     double? ans = 0;
+
     if (isSpecialOperator) {
       ans = specialOperation();
-      savedOperations.add("$operator ($num1) = $ans");
-    } else if (num1.isNotEmpty && num2.isNotEmpty && operator.isNotEmpty) {
+      if(!isError) {
+        savedOperations.add("$operator ($num1) = $ans");
+      }
+    } 
+    else if (num1.isNotEmpty && num2.isNotEmpty && operator.isNotEmpty) {
       ans = simpleOperation();
-      savedOperations.add("$num1 $operator $num2 = $ans");
-    } else {
+      if(!isError) {
+        savedOperations.add("$num1 $operator $num2 = $ans");
+      }
+    } 
+    else {
       return;
     }
-    if (ans == ans!.toInt()) {
+    if(ans == ans!.toInt()) {
       num1 = ans.toInt().toString();
     } else {
       num1 = ans.toString();
     }
+
     num2 = "";
     operator = "";
     isSecond = false;
     isCalculated = true;
     isSpecialOperator = false;
+
+
+    notifyListeners(); // Notify listeners about the change
   }
 
   double? specialOperation() {
@@ -160,6 +183,8 @@ class Calculator {
     isError = false;
     isSecond = false;
     isSpecialOperator = false;
+
+    notifyListeners(); // Notify listeners about the reset
   }
 
   void clearCurrentElement() {
@@ -169,6 +194,8 @@ class Calculator {
     } else {
       num1 = "";
     }
+
+    notifyListeners(); // Notify listeners about the change
   }
 
   void deleteDigit() {
@@ -178,6 +205,8 @@ class Calculator {
     } else {
       num1 = num1.isNotEmpty ? num1.substring(0, num1.length - 1) : "";
     }
+
+    notifyListeners(); // Notify listeners about the change
   }
 
   void handleError(int type) {
@@ -190,5 +219,7 @@ class Calculator {
         errorMessage = "Invalid input";
         break;
     }
+
+    notifyListeners(); // Notify listeners about the error
   }
 }
